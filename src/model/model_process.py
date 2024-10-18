@@ -10,11 +10,39 @@ class TrainBatchProcessor():
         self.args = args
         self.kg = kg  # information of snapshot sequence
         '''prepare data'''
-        self.dataset = TrainDatasetMarginLoss(args, kg)
-        self.data_loader = DataLoader(self.dataset,
+        if self.args.snapshot == 0:
+            self.dataset = TrainDatasetMarginLoss(args, kg)
+            self.data_loader = DataLoader(self.dataset,
                                       shuffle=True,
                                       batch_size=int(self.args.batch_size),
                                       collate_fn=self.dataset.collate_fn,
+                                      generator=torch.Generator().manual_seed(int(args.seed)),  # use seed generator
+                                      pin_memory=True)
+        elif self.args.snapshot > 0:
+            self.rectify_dataset = TrainDatasetMarginLoss(args, kg, stage="rectify")
+            self.rectify_data_loader = DataLoader(self.rectify_dataset,
+                                      shuffle=True,
+                                      batch_size=int(self.args.batch_size),
+                                    #   batch_size=int(len(self.rectify_dataset)/ 4),
+                                      collate_fn=self.rectify_dataset.collate_fn,
+                                      generator=torch.Generator().manual_seed(int(args.seed)),  # use seed generator
+                                      pin_memory=True)
+
+            self.retrain_dataset = TrainDatasetMarginLoss(args, kg, stage="retrain")
+            self.retrain_data_loader = DataLoader(self.retrain_dataset,
+                                      shuffle=True,
+                                      batch_size=int(self.args.batch_size),
+                                    #   batch_size=int(len(self.retrain_dataset)/ 4),
+                                      collate_fn=self.retrain_dataset.collate_fn,
+                                      generator=torch.Generator().manual_seed(int(args.seed)),  # use seed generator
+                                      pin_memory=True)
+        
+            self.remember_dataset = TrainDatasetMarginLoss(args, kg ,stage="memory")
+            self.remember_data_loader = DataLoader(self.remember_dataset,
+                                      shuffle=True,
+                                      batch_size=int(self.args.batch_size),
+                                    #   batch_size=int(len(self.remember_dataset)/ 4),
+                                      collate_fn=self.remember_dataset.collate_fn,
                                       generator=torch.Generator().manual_seed(int(args.seed)),  # use seed generator
                                       pin_memory=True)
 
@@ -39,6 +67,107 @@ class TrainBatchProcessor():
             model.epoch_post_processing(bh.size(0))
         return total_loss
 
+    def process_rectify_epoch(self, model, optimizer):
+        model.train()
+        # 优化器放到main.py里面了
+        
+        # optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=self.args.rectify_lr, weight_decay=self.args.rectify_weight_decay)
+        '''Start training'''
+        total_loss, total_loss1, total_loss2 = 0.0, 0.0, 0.0
+        batches = 0
+        for idx_b, (batch, rectify_batch) in enumerate(zip(self.remember_data_loader, self.rectify_data_loader)):
+            '''get loss'''
+            bh, br, bt, by = batch
+            rh, rr, rt, ry = rectify_batch
+            optimizer.zero_grad()
+            bh = bh.to(self.args.device)
+            br = br.to(self.args.device)
+            bt = bt.to(self.args.device)
+            by = by.to(self.args.device)
+            loss1 = model.loss(bh,
+                                       br,
+                                       bt,
+                                       by if by is not None else by).float()
+            loss2 = model.loss(rh.to(self.args.device),
+                                       rr.to(self.args.device),
+                                       rt.to(self.args.device),
+                                       ry.to(self.args.device) if ry is not None else ry).float()
+            loss = loss1 - self.args.beta1 * loss2
+
+            '''update'''
+            loss.backward()
+            optimizer.step()
+
+            total_loss += loss.item()
+            total_loss1 += loss1.item()
+            total_loss2 += loss2.item()
+
+            batches += 1
+
+        average_loss = total_loss/batches
+        average_loss1 = total_loss1/batches
+        average_loss2 = total_loss2/batches
+        if self.args.epoch % 10 == 0:
+            print(
+                f"rectify epoch:\t{self.args.epoch} and loss:\t{average_loss}, loss1:{average_loss1}, loss2:{average_loss2}, beta1:{self.args.beta1}, samples:{len(self.remember_data_loader) + len(self.rectify_data_loader)}")
+            '''post processing'''
+
+            model.epoch_post_processing(bh.size(0))
+        return total_loss
+
+    def process_retrain_epoch(self, model, optimizer):
+        model.train()
+        # logging.info('Model Parameter Configuration:')
+        # for name, param in model.named_parameters():
+        # # named_parameters返回参数及参数名字，requires_grad是否带梯度
+        #     logging.info('Parameter %s: %s, require_grad = %s' % (name, str(param.size()), str(param.requires_grad)))
+        # optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=self.args.retrain_lr, weight_decay=self.args.retrain_weight_decay)
+        '''Start training'''
+        total_loss, total_loss1, total_loss2 = 0.0, 0.0, 0.0
+        batches = 0
+        for idx_b, (batch, retrain_batch) in enumerate(zip(self.remember_data_loader, self.retrain_data_loader)):
+            '''get loss'''
+            bh, br, bt, by = batch
+            rh, rr, rt, ry = retrain_batch
+            optimizer.zero_grad()
+            loss1 = model.loss(bh.to(self.args.device),
+                                       br.to(self.args.device),
+                                       bt.to(self.args.device),
+                                       by.to(self.args.device) if by is not None else by).float()
+            loss2 = model.loss(rh.to(self.args.device),
+                                       rr.to(self.args.device),
+                                       rt.to(self.args.device),
+                                       ry.to(self.args.device) if ry is not None else ry).float()
+            loss = self.args.beta2 * loss1 + loss2
+
+            '''update'''
+            loss.backward()
+
+            # 尝试冻住前snapshot的关系向量
+            # if self.args.Plan_weight == "True" :
+            #     # 冻住上一个snapshot的关系向量（需要改进为稳定关系？？？）
+            #     mask = torch.ones_like(model.rel_embeddings.grad)
+            #     mask[:self.kg.snapshots[self.args.snapshot - 1].num_rel] = 0
+            #     model.rel_embeddings.grad = model.rel_embeddings.grad * mask
+                
+            optimizer.step()
+
+            total_loss += loss.item()
+            total_loss1 += loss1.item()
+            total_loss2 += loss2.item()
+
+            batches += 1
+
+        average_loss = total_loss / batches
+        average_loss1 = total_loss1 / batches
+        average_loss2 = total_loss2 / batches
+        if self.args.epoch % 10 == 0:
+            print(
+                f"retrain epoch:\t{self.args.epoch} and loss:\t{average_loss}, loss1:{average_loss1}, loss2:{average_loss2}, beta1:{self.args.beta1}, samples:{len(self.remember_data_loader) + len(self.retrain_data_loader)}")
+            '''post processing'''
+
+            model.epoch_post_processing(bh.size(0))
+        return total_loss
 
 class DevBatchProcessor():
     def __init__(self, args, kg):

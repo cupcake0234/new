@@ -22,4 +22,16 @@ class Trainer():
         self.args.valid = False
         return loss, res
 
-
+    def run_rectify_epoch(self):
+        self.args.valid = True
+        loss = self.train_processor.process_rectify_epoch(self.model, self.optimizer)
+        # res = self.valid_processor.process_epoch(self.model)
+        self.args.valid = False
+        return loss
+    
+    def run_retrain_epoch(self):
+        self.args.valid = True
+        loss = self.train_processor.process_retrain_epoch(self.model, self.optimizer)
+        res = self.valid_processor.process_epoch(self.model)
+        self.args.valid = False
+        return loss , res
