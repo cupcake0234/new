@@ -69,9 +69,6 @@ class TrainBatchProcessor():
 
     def process_rectify_epoch(self, model, optimizer):
         model.train()
-        # 优化器放到main.py里面了
-        
-        # optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=self.args.rectify_lr, weight_decay=self.args.rectify_weight_decay)
         '''Start training'''
         total_loss, total_loss1, total_loss2 = 0.0, 0.0, 0.0
         batches = 0
@@ -117,11 +114,6 @@ class TrainBatchProcessor():
 
     def process_retrain_epoch(self, model, optimizer):
         model.train()
-        # logging.info('Model Parameter Configuration:')
-        # for name, param in model.named_parameters():
-        # # named_parameters返回参数及参数名字，requires_grad是否带梯度
-        #     logging.info('Parameter %s: %s, require_grad = %s' % (name, str(param.size()), str(param.requires_grad)))
-        # optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=self.args.retrain_lr, weight_decay=self.args.retrain_weight_decay)
         '''Start training'''
         total_loss, total_loss1, total_loss2 = 0.0, 0.0, 0.0
         batches = 0

@@ -124,6 +124,78 @@ class experiment():
         end_time = time.time()
         training_time = end_time - start_time
         return training_time
+    
+    def expand_train(self,ss_id):
+        print("Start Expand Training ===============================>")
+        self.best_valid = 0.0
+        self.stop_epoch = 0 
+
+        self.model.open_parameters()
+
+        logging.info('Model Parameter Configuration:')
+        for name, param in self.model.named_parameters():
+            # named_parameters返回参数及参数名字，requires_grad是否带梯度
+            logging.info('Parameter %s: %s, require_grad = %s' % (name, str(param.size()), str(param.requires_grad)))
+        optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.args.rectify_lr, weight_decay=self.args.rectify_weight_decay)
+        trainer = Trainer(self.args, self.kg, self.model, optimizer)
+
+        start_time = time.time()
+        print("-"*10+"in rectify epochs"+"-"*10)
+        for epoch in range(self.args.rectify_epochs):
+            self.args.epoch = epoch
+            '''training'''
+            self.args.rectify = True
+            loss = trainer.run_rectify_epoch()
+            self.args.rectify = False
+            '''logging'''
+            if epoch % 1 == 0:
+                self.args.logger.info('Snapshot:{}\tEpoch:{}\tLoss:{}\t'.format(self.args.snapshot, epoch, round(loss, 3)))
+        end_time = time.time()
+        rectify_training_time = end_time - start_time
+        # 横向扩展
+        self.model.expand()
+        self.model.init_expanded_parameters()
+
+        self.model.isolate_parameters()
+        logging.info('Model Parameter Configuration:')
+        for name, param in self.model.named_parameters():
+        # named_parameters返回参数及参数名字，requires_grad是否带梯度
+            logging.info('Parameter %s: %s, require_grad = %s' % (name, str(param.size()), str(param.requires_grad)))
+        
+        optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.args.retrain_lr, weight_decay=self.args.retrain_weight_decay)
+        trainer = Trainer(self.args, self.kg, self.model, optimizer)
+        
+        start_time = time.time()
+        print("-"*10+"in retrain epochs"+"-"*10)
+        for epoch in range(self.args.retrain_epochs):
+            self.args.epoch = epoch
+            '''training'''
+            self.args.retrain = True
+            loss,valid_res= trainer.run_retrain_epoch()
+            self.args.retrain = False
+            if self.best_valid < valid_res[self.args.valid_metrics]:
+                self.best_valid = valid_res[self.args.valid_metrics]
+                self.stop_epoch = max(0, self.stop_epoch-5)
+                self.save_model(is_best=True)
+            else:
+                self.stop_epoch += 1
+                # self.save_model()
+                # patience default 3
+                if self.stop_epoch >= self.args.patience:
+                    self.args.logger.info('Early Stopping! Snapshot:{} Epoch: {} Best Results: {}'.format(self.args.snapshot, epoch, round(self.best_valid*100, 3)))
+                    break
+            '''logging'''
+            if epoch % 1 == 0:
+                self.args.logger.info('Snapshot:{}\tEpoch:{}\tLoss:{}\tMRR:{}\tHits@10:{}\t'.format(self.args.snapshot, epoch, round(loss, 3), round(valid_res['mrr'] * 100, 2), round(valid_res['hits10'] * 100, 2)))
+        end_time = time.time()
+        retrain_training_time = end_time - start_time
+
+        best_checkpoint = os.path.join(self.args.save_path, str(ss_id) + 'model_best.tar')
+        self.load_checkpoint(best_checkpoint)
+
+        # self.save_model()
+
+        return rectify_training_time + retrain_training_time
 
     def test(self):
         tester = Tester(self.args, self.kg, self.model)
@@ -158,7 +230,10 @@ class experiment():
             self.args.save_path = self.args.save_path
 
         if os.path.exists(args.save_path):
-            shutil.rmtree(args.save_path, True)
+            if args.Pass_snapshot0 == 'False':
+                shutil.rmtree(args.save_path, True)
+            else:
+                logging.info('直接跳过snapshot 0 的训练')
         if not os.path.exists(args.save_path):
             os.mkdir(args.save_path)
         self.args.log_path = args.log_path + datetime.now().strftime('%Y%m%d/')
@@ -243,8 +318,27 @@ class experiment():
             self.args.test_FWT = False
 
             '''training'''
-            if ss_id == 0 or self.args.lifelong_name not in ['MEAN', 'LAN', 'LKGE'] or (self.args.lifelong_name == 'LKGE' and self.args.using_finetune == 'True'):
-                training_time = self.train()
+            if self.args.PI_GNN == "True":
+                if ss_id == 0:
+                    self.args.rectify = False
+                    self.args.retrain = False
+                    if self.args.Pass_snapshot0 == 'True':
+                        best_checkpoint = os.path.join(self.args.save_path, str(ss_id) + 'model_best.tar')
+                        self.load_checkpoint(best_checkpoint)
+                        training_time = 0
+                    else:
+                        training_time = self.train()
+                else:
+                    training_time = self.expand_train(ss_id)
+            elif ss_id == 0 or self.args.lifelong_name not in ['MEAN', 'LAN', 'LKGE'] or (self.args.lifelong_name == 'LKGE' and self.args.using_finetune == 'True'):
+                self.args.rectify = False
+                self.args.retrain = False
+                if ss_id == 0 and self.args.Pass_snapshot0 == 'True':
+                        best_checkpoint = os.path.join(self.args.save_path, str(ss_id) + 'model_best.tar')
+                        self.load_checkpoint(best_checkpoint)
+                        training_time = 0
+                else:
+                    training_time = self.train() 
             else:
                 training_time = 0
 
@@ -253,8 +347,11 @@ class experiment():
             test_res.field_names = ['Snapshot:'+str(ss_id), 'MRR', 'Hits@1', 'Hits@3', 'Hits@5', 'Hits@10']
 
             '''save and reload model'''
-            best_checkpoint = os.path.join(self.args.save_path, str(ss_id) + 'model_best.tar')
-            self.load_checkpoint(best_checkpoint)
+            if self.args.Plan_weight == "True":
+                print("跳过外部加载模型")
+            else:
+                best_checkpoint = os.path.join(self.args.save_path, str(ss_id) + 'model_best.tar')
+                self.load_checkpoint(best_checkpoint)
 
             '''post processing'''
             self.model.snapshot_post_processing()
