@@ -86,13 +86,23 @@ class TestDataset(Dataset):
 
 
 class TrainDatasetMarginLoss(Dataset):
-    def __init__(self, args, kg):
+    def __init__(self, args, kg, stage = "train"):
         self.args = args
         self.kg = kg
-        self.facts, self.facts_new = self.build_facts()
+        self.stage = stage
+        # self.facts, self.facts_new = self.build_facts()
+        self.facts, self.facts_new, self.facts_rec , self.facts_ret ,self.facts_rem= self.build_facts()
 
     def __len__(self):
-        if self.args.train_new:  # load the training facts of the i-th snapshots
+        # for PI-GNN
+        if self.stage == "rectify":
+            return len(self.facts_rec[self.args.snapshot])
+        elif self.stage == "retrain":
+            return len(self.facts_ret[self.args.snapshot])
+        elif self.stage == "memory":
+            return len(self.facts_rem[self.args.snapshot])
+        # LKGE 默认True
+        elif self.args.train_new:  # load the training facts of the i-th snapshots
             return len(self.facts_new[self.args.snapshot])
         else:  # for retraining, load the training facts of first i snapshots
             return len(self.facts[self.args.snapshot])
@@ -102,7 +112,15 @@ class TrainDatasetMarginLoss(Dataset):
         :param idx: idx of the training fact
         :return: a positive facts and its negative facts
         '''
-        if self.args.train_new:
+        # for PI-GNN
+        if self.stage == "rectify":
+            ele = self.facts_rec[self.args.snapshot][idx]
+        elif self.stage == "retrain":
+            ele = self.facts_ret[self.args.snapshot][idx]
+        elif self.stage == "memory":
+            ele = self.facts_rem[self.args.snapshot][idx]
+
+        elif self.args.train_new:
             ele = self.facts_new[self.args.snapshot][idx]
         else:
             ele = self.facts[self.args.snapshot][idx]
@@ -125,8 +143,10 @@ class TrainDatasetMarginLoss(Dataset):
         :return: training data
         '''
         facts, facts_new = list(), list()
+        facts_rec , facts_ret ,facts_rem= list(), list(), list()
         for ss_id in range(int(self.args.snapshot_num)):
             facts_, facts_new_ = list(), list()
+            facts_rec_ , facts_ret_, facts_rem_  = list(), list(), list()
             '''for LKGE and other baselines'''
             for s, r, o in self.kg.snapshots[ss_id].train_new:
                 facts_new_.append({'fact':(s, r, o), 'label':1})
@@ -135,9 +155,25 @@ class TrainDatasetMarginLoss(Dataset):
             for s, r, o in self.kg.snapshots[ss_id].train_all:
                 facts_.append({'fact':(s, r, o), 'label':1})
                 facts_.append({'fact': (o, r+1, s), 'label': 1})
+            
+            # for Pi-GNN
+            for s, r, o in self.kg.snapshots[ss_id].rec_data:
+                facts_rec_.append({'fact':(s, r, o), 'label':1})
+                facts_rec_.append({'fact': (o, r+1, s), 'label': 1})
+            for s, r, o in self.kg.snapshots[ss_id].ret_data:
+                facts_ret_.append({'fact':(s, r, o), 'label':1})
+                facts_ret_.append({'fact': (o, r+1, s), 'label': 1})
+            for s, r, o in self.kg.snapshots[ss_id].rem_data:
+                facts_rem_.append({'fact':(s, r, o), 'label':1})
+                facts_rem_.append({'fact': (o, r+1, s), 'label': 1})
+            # facts包含facts_new
             facts.append(facts_)
             facts_new.append(facts_new_)
-        return facts, facts_new
+            # for PI-GNN
+            facts_rec.append(facts_rec_)
+            facts_ret.append(facts_ret_)
+            facts_rem.append(facts_rem_)
+        return facts, facts_new, facts_rec, facts_ret, facts_rem
 
     def corrupt(self, fact):
         '''
@@ -149,6 +185,22 @@ class TrainDatasetMarginLoss(Dataset):
         prob = 0.5
 
         '''random corrupt subject or object entities'''
+        if  self.args.Plan_weight == 'True' and self.args.rectify:
+            neg_s = np.random.randint(0, self.kg.snapshots[ss_id - 1].num_ent - 1, self.args.neg_ratio)
+            neg_o = np.random.randint(0, self.kg.snapshots[ss_id - 1].num_ent - 1, self.args.neg_ratio)
+            pos_s = np.ones_like(neg_s) * s
+            pos_o = np.ones_like(neg_o) * o
+            rand_prob = np.random.rand(self.args.neg_ratio)
+            sub = np.where(rand_prob > prob, pos_s, neg_s)
+            obj = np.where(rand_prob > prob, neg_o, pos_o)
+            facts = [(s, r, o)]
+
+            label = [1]
+            for ns, no in zip(sub, obj):
+                facts.append((ns, r, no))
+                label.append(-1)
+            return facts, label
+       
         neg_s = np.random.randint(0, self.kg.snapshots[ss_id].num_ent - 1, self.args.neg_ratio)
         neg_o = np.random.randint(0, self.kg.snapshots[ss_id].num_ent - 1, self.args.neg_ratio)
         pos_s = np.ones_like(neg_s) * s
