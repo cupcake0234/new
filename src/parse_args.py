@@ -42,4 +42,25 @@ parser.add_argument('-valid_metrics', dest='valid_metrics', default='mrr')
 parser.add_argument('-valid', dest='valid', default=True, help='indicator of test or valid')
 parser.add_argument('-note', dest='note', default='', help='The note of log file name')
 parser.add_argument('-seed', dest='seed', default=55, help='random seed, 11 22 33 44 55 for our experiments')
+
+# for PI-GNN
+parser.add_argument('-m_size', dest='m_size', default=1024, help='')
+parser.add_argument('-PI_GNN', dest='PI_GNN', default='True', help='')
+
+parser.add_argument('-rectify_epochs', dest='rectify_epochs', default=15, help='')
+parser.add_argument('-retrain_epochs', dest='retrain_epochs', default=60, help='')
+
+parser.add_argument('-beta1', action='store', default=0.01, type=float)
+parser.add_argument('-beta2', action='store', default=0.1, type=float)
+
+parser.add_argument('-rectify_lr', action='store', default=0.0003, type=float)
+parser.add_argument('-retrain_lr', action='store', default=0.0003, type=float)
+
+parser.add_argument('-rectify_weight_decay', action='store', default=0, type=float)
+parser.add_argument('-retrain_weight_decay', action='store', default=0, type=float)
+
+parser.add_argument('-Pass_snapshot0', dest='Pass_snapshot0', default='False', help='')
+
+
+parser.add_argument('-Plan_weight', dest='Plan_weight', default='False', help='')
 args = parser.parse_args()
