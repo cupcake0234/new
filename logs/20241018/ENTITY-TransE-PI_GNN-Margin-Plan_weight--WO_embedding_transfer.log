@@ -1,0 +1,52 @@
+2024-10-18 13:52:59,434 INFO    : 当前模型:Plan_weight
+2024-10-18 13:52:59,448 INFO    : Model Parameter Configuration:
+2024-10-18 13:52:59,448 INFO    : Parameter ent_embeddings: torch.Size([2909, 200]), require_grad = True
+2024-10-18 13:52:59,449 INFO    : Parameter rel_embeddings: torch.Size([466, 200]), require_grad = True
+2024-10-18 13:52:59,449 INFO    : Parameter linear_w: torch.Size([2909, 1]), require_grad = True
+2024-10-18 13:52:59,924 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='False', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_transfer', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_embedding_transfer', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='False', Plan_weight='True', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:02:13,302 INFO    : 当前模型:Plan_weight
+2024-10-18 14:02:13,316 INFO    : Model Parameter Configuration:
+2024-10-18 14:02:13,316 INFO    : Parameter ent_embeddings: torch.Size([2909, 200]), require_grad = True
+2024-10-18 14:02:13,317 INFO    : Parameter rel_embeddings: torch.Size([466, 200]), require_grad = True
+2024-10-18 14:02:13,317 INFO    : Parameter linear_w: torch.Size([2909, 1]), require_grad = True
+2024-10-18 14:02:13,797 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='False', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_transfer', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_embedding_transfer', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='False', Plan_weight='True', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:03:57,652 INFO    : 当前模型:Plan_weight
+2024-10-18 14:03:57,667 INFO    : Model Parameter Configuration:
+2024-10-18 14:03:57,668 INFO    : Parameter ent_embeddings: torch.Size([2909, 200]), require_grad = True
+2024-10-18 14:03:57,671 INFO    : Parameter rel_embeddings: torch.Size([466, 200]), require_grad = True
+2024-10-18 14:03:57,671 INFO    : Parameter linear_w: torch.Size([2909, 1]), require_grad = True
+2024-10-18 14:03:58,165 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='False', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_transfer', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_embedding_transfer', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='False', Plan_weight='True', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:15:36,954 INFO    : 当前模型:Plan_weight
+2024-10-18 14:15:36,968 INFO    : Model Parameter Configuration:
+2024-10-18 14:15:36,968 INFO    : Parameter ent_embeddings: torch.Size([2909, 200]), require_grad = True
+2024-10-18 14:15:36,969 INFO    : Parameter rel_embeddings: torch.Size([466, 200]), require_grad = True
+2024-10-18 14:15:36,969 INFO    : Parameter linear_w: torch.Size([2909, 1]), require_grad = True
+2024-10-18 14:15:37,457 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='False', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_transfer', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_embedding_transfer', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='False', Plan_weight='True', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:19:07,368 INFO    : 当前模型:Plan_weight
+2024-10-18 14:19:07,383 INFO    : Model Parameter Configuration:
+2024-10-18 14:19:07,383 INFO    : Parameter ent_embeddings: torch.Size([2909, 200]), require_grad = True
+2024-10-18 14:19:07,384 INFO    : Parameter rel_embeddings: torch.Size([466, 200]), require_grad = True
+2024-10-18 14:19:07,384 INFO    : Parameter linear_w: torch.Size([2909, 1]), require_grad = True
+2024-10-18 14:19:07,896 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='False', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_transfer', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_embedding_transfer', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='False', Plan_weight='True', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:19:23,374 INFO    : Snapshot:0	Epoch:0	Loss:21.973	MRR:0.94	Hits@10:1.08	Best:0.94
+2024-10-18 14:19:29,784 INFO    : Snapshot:0	Epoch:1	Loss:21.458	MRR:1.1	Hits@10:1.48	Best:1.1
+2024-10-18 14:19:35,193 INFO    : Snapshot:0	Epoch:2	Loss:20.971	MRR:1.48	Hits@10:2.55	Best:1.48
+2024-10-18 14:19:42,445 INFO    : Snapshot:0	Epoch:3	Loss:20.519	MRR:2.09	Hits@10:4.14	Best:2.09
+2024-10-18 14:19:49,714 INFO    : Snapshot:0	Epoch:4	Loss:20.077	MRR:2.82	Hits@10:5.79	Best:2.82
+2024-10-18 14:19:56,824 INFO    : Snapshot:0	Epoch:5	Loss:19.641	MRR:3.49	Hits@10:7.27	Best:3.49
+2024-10-18 14:20:03,759 INFO    : Snapshot:0	Epoch:6	Loss:19.213	MRR:4.11	Hits@10:8.87	Best:4.11
+2024-10-18 14:20:11,397 INFO    : Snapshot:0	Epoch:7	Loss:18.774	MRR:4.78	Hits@10:10.56	Best:4.78
+2024-10-18 14:20:16,991 INFO    : Snapshot:0	Epoch:8	Loss:18.366	MRR:5.44	Hits@10:12.17	Best:5.44
+2024-10-18 14:20:24,037 INFO    : Snapshot:0	Epoch:9	Loss:17.931	MRR:6.08	Hits@10:13.83	Best:6.08
+2024-10-18 14:20:31,501 INFO    : Snapshot:0	Epoch:10	Loss:17.492	MRR:6.71	Hits@10:15.41	Best:6.71
+2024-10-18 14:20:39,610 INFO    : Snapshot:0	Epoch:11	Loss:17.061	MRR:7.36	Hits@10:17.34	Best:7.36
+2024-10-18 14:20:47,249 INFO    : Snapshot:0	Epoch:12	Loss:16.636	MRR:8.05	Hits@10:19.2	Best:8.05
+2024-10-18 14:20:55,927 INFO    : Snapshot:0	Epoch:13	Loss:16.214	MRR:8.78	Hits@10:20.89	Best:8.78
+2024-10-18 14:21:01,910 INFO    : Snapshot:0	Epoch:14	Loss:15.776	MRR:9.49	Hits@10:22.83	Best:9.49
+2024-10-18 14:21:09,623 INFO    : Snapshot:0	Epoch:15	Loss:15.321	MRR:10.19	Hits@10:25.01	Best:10.19
+2024-10-18 14:21:17,282 INFO    : Snapshot:0	Epoch:16	Loss:14.874	MRR:10.9	Hits@10:27.09	Best:10.9
+2024-10-18 14:21:25,375 INFO    : Snapshot:0	Epoch:17	Loss:14.411	MRR:11.59	Hits@10:28.97	Best:11.59
+2024-10-18 14:21:33,197 INFO    : Snapshot:0	Epoch:18	Loss:13.958	MRR:12.25	Hits@10:30.9	Best:12.25
+2024-10-18 14:21:41,232 INFO    : Snapshot:0	Epoch:19	Loss:13.48	MRR:12.91	Hits@10:32.76	Best:12.91
+2024-10-18 14:21:47,295 INFO    : Snapshot:0	Epoch:20	Loss:12.97	MRR:13.55	Hits@10:34.47	Best:13.55
+2024-10-18 14:21:55,369 INFO    : Snapshot:0	Epoch:21	Loss:12.448	MRR:14.25	Hits@10:35.97	Best:14.25

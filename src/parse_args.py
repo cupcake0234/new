@@ -61,6 +61,6 @@ parser.add_argument('-retrain_weight_decay', action='store', default=0, type=flo
 
 parser.add_argument('-Pass_snapshot0', dest='Pass_snapshot0', default='False', help='')
 
-
+parser.add_argument('-Plan_yuan', dest='Plan_yuan', default='False', help='')
 parser.add_argument('-Plan_weight', dest='Plan_weight', default='False', help='')
 args = parser.parse_args()

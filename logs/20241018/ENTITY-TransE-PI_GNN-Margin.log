@@ -1,0 +1,32 @@
+2024-10-18 13:33:12,228 INFO    : 当前模型:Plan_yuan
+2024-10-18 13:33:12,254 INFO    : Model Parameter Configuration:
+2024-10-18 13:33:12,254 INFO    : Parameter ent_embeddings.weight: torch.Size([2909, 200]), require_grad = True
+2024-10-18 13:33:12,255 INFO    : Parameter rel_embeddings.weight: torch.Size([466, 200]), require_grad = True
+2024-10-18 13:33:14,018 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='True', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan--Plan_yuan-', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='True', Plan_yuan='True', Plan_weight='False', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 13:33:14,019 INFO    : => no checkpoint found at './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan--Plan_yuan-/0model_best.tar'
+2024-10-18 13:33:14,019 INFO    : => no checkpoint found at './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan--Plan_yuan-/0model_best.tar'
+2024-10-18 13:33:17,569 INFO    : 
++------------+--------+--------+--------+--------+---------+
+| Snapshot:0 |  MRR   | Hits@1 | Hits@3 | Hits@5 | Hits@10 |
++------------+--------+--------+--------+--------+---------+
+|     0      | 0.0097 | 0.007  | 0.008  | 0.0086 |  0.0101 |
++------------+--------+--------+--------+--------+---------+
+2024-10-18 13:33:23,297 INFO    : Model Parameter Configuration:
+2024-10-18 13:33:23,297 INFO    : Parameter ent_embeddings.weight: torch.Size([5817, 200]), require_grad = True
+2024-10-18 13:33:23,298 INFO    : Parameter rel_embeddings.weight: torch.Size([472, 200]), require_grad = True
+2024-10-18 13:34:05,749 INFO    : Snapshot:1	Epoch:0	Loss:12.594	
+2024-10-18 13:34:15,011 INFO    : Snapshot:1	Epoch:1	Loss:11.789	
+2024-10-18 13:34:22,982 INFO    : Snapshot:1	Epoch:2	Loss:11.041	
+2024-10-18 13:34:30,971 INFO    : Snapshot:1	Epoch:3	Loss:10.292	
+2024-10-18 13:34:39,420 INFO    : Snapshot:1	Epoch:4	Loss:9.514	
+2024-10-18 13:34:46,847 INFO    : Snapshot:1	Epoch:5	Loss:8.703	
+2024-10-18 13:34:55,520 INFO    : Snapshot:1	Epoch:6	Loss:7.833	
+2024-10-18 13:35:03,458 INFO    : Snapshot:1	Epoch:7	Loss:6.889	
+2024-10-18 13:35:10,766 INFO    : Snapshot:1	Epoch:8	Loss:5.857	
+2024-10-18 13:35:18,194 INFO    : Snapshot:1	Epoch:9	Loss:4.781	
+2024-10-18 13:35:25,929 INFO    : Snapshot:1	Epoch:10	Loss:3.761	
+2024-10-18 13:40:58,964 INFO    : 当前模型:Plan_yuan
+2024-10-18 13:40:58,991 INFO    : Model Parameter Configuration:
+2024-10-18 13:40:58,991 INFO    : Parameter ent_embeddings.weight: torch.Size([2909, 200]), require_grad = True
+2024-10-18 13:40:58,993 INFO    : Parameter rel_embeddings.weight: torch.Size([466, 200]), require_grad = True
+2024-10-18 13:41:00,318 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='True', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan--Plan_yuan-', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='True', Plan_weight='False', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))

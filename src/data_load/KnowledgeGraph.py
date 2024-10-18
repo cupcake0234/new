@@ -33,7 +33,7 @@ class KnowledgeGraph():
             # 这里的facts是三部分字符 list
             train_facts = load_fact(self.args.data_path + str(ss_id) + '/' + 'train.txt')
             test_facts = load_fact(self.args.data_path + str(ss_id) + '/' + 'test.txt')
-            valid_facts = load_fact(self.args.data_path + str(ss_id) + '/' + 'test.txt')
+            valid_facts = load_fact(self.args.data_path + str(ss_id) + '/' + 'valid.txt')
 
             '''extract entities & relations from facts'''
             # 提取并注册到上面的转换字典中

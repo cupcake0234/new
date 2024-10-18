@@ -1,0 +1,273 @@
+2024-10-18 13:44:07,767 INFO    : 当前模型:Plan_yuan
+2024-10-18 13:44:07,795 INFO    : Model Parameter Configuration:
+2024-10-18 13:44:07,795 INFO    : Parameter ent_embeddings.weight: torch.Size([2909, 200]), require_grad = True
+2024-10-18 13:44:07,796 INFO    : Parameter rel_embeddings.weight: torch.Size([466, 200]), require_grad = True
+2024-10-18 13:44:09,321 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='True', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='True', Plan_weight='False', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 13:44:26,565 INFO    : Snapshot:0	Epoch:0	Loss:22.356	MRR:1.06	Hits@10:1.27	Best:1.06
+2024-10-18 13:44:34,359 INFO    : Snapshot:0	Epoch:1	Loss:21.771	MRR:1.25	Hits@10:1.77	Best:1.25
+2024-10-18 13:44:42,080 INFO    : Snapshot:0	Epoch:2	Loss:21.206	MRR:1.63	Hits@10:2.78	Best:1.63
+2024-10-18 13:44:49,539 INFO    : Snapshot:0	Epoch:3	Loss:20.691	MRR:2.29	Hits@10:4.52	Best:2.29
+2024-10-18 13:44:57,877 INFO    : Snapshot:0	Epoch:4	Loss:20.164	MRR:3.09	Hits@10:6.35	Best:3.09
+2024-10-18 13:45:05,246 INFO    : Snapshot:0	Epoch:5	Loss:19.654	MRR:3.84	Hits@10:8.02	Best:3.84
+2024-10-18 13:45:12,522 INFO    : Snapshot:0	Epoch:6	Loss:19.166	MRR:4.53	Hits@10:9.72	Best:4.53
+2024-10-18 13:45:19,875 INFO    : Snapshot:0	Epoch:7	Loss:18.656	MRR:5.22	Hits@10:11.26	Best:5.22
+2024-10-18 13:45:27,792 INFO    : Snapshot:0	Epoch:8	Loss:18.182	MRR:5.89	Hits@10:13.12	Best:5.89
+2024-10-18 13:45:35,392 INFO    : Snapshot:0	Epoch:9	Loss:17.687	MRR:6.57	Hits@10:15.12	Best:6.57
+2024-10-18 13:45:43,105 INFO    : Snapshot:0	Epoch:10	Loss:17.202	MRR:7.29	Hits@10:17.12	Best:7.29
+2024-10-18 13:45:50,823 INFO    : Snapshot:0	Epoch:11	Loss:16.726	MRR:8.01	Hits@10:19.19	Best:8.01
+2024-10-18 13:45:58,170 INFO    : Snapshot:0	Epoch:12	Loss:16.236	MRR:8.73	Hits@10:21.51	Best:8.73
+2024-10-18 13:46:05,594 INFO    : Snapshot:0	Epoch:13	Loss:15.755	MRR:9.46	Hits@10:23.7	Best:9.46
+2024-10-18 13:46:13,359 INFO    : Snapshot:0	Epoch:14	Loss:15.265	MRR:10.18	Hits@10:25.61	Best:10.18
+2024-10-18 13:46:21,674 INFO    : Snapshot:0	Epoch:15	Loss:14.751	MRR:10.85	Hits@10:27.52	Best:10.85
+2024-10-18 13:46:30,142 INFO    : Snapshot:0	Epoch:16	Loss:14.241	MRR:11.5	Hits@10:29.59	Best:11.5
+2024-10-18 13:46:37,601 INFO    : Snapshot:0	Epoch:17	Loss:13.71	MRR:12.13	Hits@10:31.38	Best:12.13
+2024-10-18 13:46:45,168 INFO    : Snapshot:0	Epoch:18	Loss:13.183	MRR:12.74	Hits@10:33.09	Best:12.74
+2024-10-18 13:46:52,579 INFO    : Snapshot:0	Epoch:19	Loss:12.641	MRR:13.33	Hits@10:34.73	Best:13.33
+2024-10-18 13:47:00,261 INFO    : Snapshot:0	Epoch:20	Loss:12.092	MRR:14.04	Hits@10:36.3	Best:14.04
+2024-10-18 13:47:07,667 INFO    : Snapshot:0	Epoch:21	Loss:11.52	MRR:14.74	Hits@10:37.89	Best:14.74
+2024-10-18 13:47:15,978 INFO    : Snapshot:0	Epoch:22	Loss:10.968	MRR:15.54	Hits@10:39.37	Best:15.54
+2024-10-18 13:47:23,984 INFO    : Snapshot:0	Epoch:23	Loss:10.398	MRR:16.32	Hits@10:40.56	Best:16.32
+2024-10-18 13:47:32,113 INFO    : Snapshot:0	Epoch:24	Loss:9.855	MRR:17.2	Hits@10:41.95	Best:17.2
+2024-10-18 13:47:39,719 INFO    : Snapshot:0	Epoch:25	Loss:9.33	MRR:18.12	Hits@10:43.17	Best:18.12
+2024-10-18 13:47:47,585 INFO    : Snapshot:0	Epoch:26	Loss:8.818	MRR:19.02	Hits@10:44.2	Best:19.02
+2024-10-18 13:47:54,929 INFO    : Snapshot:0	Epoch:27	Loss:8.334	MRR:19.93	Hits@10:45.09	Best:19.93
+2024-10-18 13:48:02,315 INFO    : Snapshot:0	Epoch:28	Loss:7.829	MRR:20.73	Hits@10:45.95	Best:20.73
+2024-10-18 13:48:09,967 INFO    : Snapshot:0	Epoch:29	Loss:7.335	MRR:21.67	Hits@10:46.74	Best:21.67
+2024-10-18 13:48:18,185 INFO    : Snapshot:0	Epoch:30	Loss:6.92	MRR:22.45	Hits@10:47.61	Best:22.45
+2024-10-18 13:48:25,797 INFO    : Snapshot:0	Epoch:31	Loss:6.474	MRR:23.18	Hits@10:48.22	Best:23.18
+2024-10-18 13:48:33,574 INFO    : Snapshot:0	Epoch:32	Loss:6.064	MRR:23.81	Hits@10:48.84	Best:23.81
+2024-10-18 13:48:41,086 INFO    : Snapshot:0	Epoch:33	Loss:5.65	MRR:24.42	Hits@10:49.49	Best:24.42
+2024-10-18 13:48:48,644 INFO    : Snapshot:0	Epoch:34	Loss:5.266	MRR:25.02	Hits@10:49.96	Best:25.02
+2024-10-18 13:48:57,016 INFO    : Snapshot:0	Epoch:35	Loss:4.919	MRR:25.51	Hits@10:50.41	Best:25.51
+2024-10-18 13:49:04,449 INFO    : Snapshot:0	Epoch:36	Loss:4.563	MRR:25.97	Hits@10:50.99	Best:25.97
+2024-10-18 13:49:12,007 INFO    : Snapshot:0	Epoch:37	Loss:4.255	MRR:26.51	Hits@10:51.23	Best:26.51
+2024-10-18 13:49:19,787 INFO    : Snapshot:0	Epoch:38	Loss:3.968	MRR:26.99	Hits@10:51.61	Best:26.99
+2024-10-18 13:49:27,453 INFO    : Snapshot:0	Epoch:39	Loss:3.674	MRR:27.42	Hits@10:52.03	Best:27.42
+2024-10-18 13:49:35,174 INFO    : Snapshot:0	Epoch:40	Loss:3.439	MRR:27.85	Hits@10:52.3	Best:27.85
+2024-10-18 13:49:42,417 INFO    : Snapshot:0	Epoch:41	Loss:3.221	MRR:28.24	Hits@10:52.45	Best:28.24
+2024-10-18 13:49:49,838 INFO    : Snapshot:0	Epoch:42	Loss:3.002	MRR:28.59	Hits@10:52.68	Best:28.59
+2024-10-18 13:49:57,377 INFO    : Snapshot:0	Epoch:43	Loss:2.821	MRR:28.85	Hits@10:53.03	Best:28.85
+2024-10-18 13:50:05,416 INFO    : Snapshot:0	Epoch:44	Loss:2.643	MRR:29.11	Hits@10:53.12	Best:29.11
+2024-10-18 13:50:13,535 INFO    : Snapshot:0	Epoch:45	Loss:2.481	MRR:29.37	Hits@10:53.13	Best:29.37
+2024-10-18 13:50:21,191 INFO    : Snapshot:0	Epoch:46	Loss:2.335	MRR:29.6	Hits@10:53.36	Best:29.6
+2024-10-18 13:50:28,649 INFO    : Snapshot:0	Epoch:47	Loss:2.197	MRR:29.92	Hits@10:53.6	Best:29.92
+2024-10-18 13:50:36,279 INFO    : Snapshot:0	Epoch:48	Loss:2.07	MRR:30.1	Hits@10:53.75	Best:30.1
+2024-10-18 13:50:44,148 INFO    : Snapshot:0	Epoch:49	Loss:1.952	MRR:30.27	Hits@10:53.82	Best:30.27
+2024-10-18 13:50:52,225 INFO    : Snapshot:0	Epoch:50	Loss:1.851	MRR:30.41	Hits@10:53.89	Best:30.41
+2024-10-18 13:50:59,732 INFO    : Snapshot:0	Epoch:51	Loss:1.747	MRR:30.53	Hits@10:54.03	Best:30.53
+2024-10-18 13:51:07,313 INFO    : Snapshot:0	Epoch:52	Loss:1.659	MRR:30.59	Hits@10:54.02	Best:30.59
+2024-10-18 13:51:14,766 INFO    : Snapshot:0	Epoch:53	Loss:1.577	MRR:30.73	Hits@10:54.04	Best:30.73
+2024-10-18 13:51:22,277 INFO    : Snapshot:0	Epoch:54	Loss:1.491	MRR:30.79	Hits@10:54.13	Best:30.79
+2024-10-18 13:51:30,592 INFO    : Snapshot:0	Epoch:55	Loss:1.433	MRR:30.85	Hits@10:54.21	Best:30.85
+2024-10-18 13:51:38,582 INFO    : Snapshot:0	Epoch:56	Loss:1.375	MRR:30.93	Hits@10:54.26	Best:30.93
+2024-10-18 13:51:46,378 INFO    : Snapshot:0	Epoch:57	Loss:1.307	MRR:31.01	Hits@10:54.37	Best:31.01
+2024-10-18 13:51:53,959 INFO    : Snapshot:0	Epoch:58	Loss:1.25	MRR:31.08	Hits@10:54.38	Best:31.08
+2024-10-18 13:52:01,519 INFO    : Snapshot:0	Epoch:59	Loss:1.199	MRR:31.13	Hits@10:54.38	Best:31.13
+2024-10-18 13:52:09,066 INFO    : Snapshot:0	Epoch:60	Loss:1.155	MRR:31.17	Hits@10:54.44	Best:31.17
+2024-10-18 13:52:16,917 INFO    : Snapshot:0	Epoch:61	Loss:1.12	MRR:31.18	Hits@10:54.47	Best:31.18
+2024-10-18 13:52:25,282 INFO    : Snapshot:0	Epoch:62	Loss:1.067	MRR:31.19	Hits@10:54.54	Best:31.19
+2024-10-18 13:52:32,824 INFO    : Snapshot:0	Epoch:63	Loss:1.031	MRR:31.19	Hits@10:54.63	Best:31.19
+2024-10-18 13:52:40,197 INFO    : Snapshot:0	Epoch:64	Loss:0.996	MRR:31.26	Hits@10:54.7	Best:31.26
+2024-10-18 13:52:47,691 INFO    : Snapshot:0	Epoch:65	Loss:0.97	MRR:31.28	Hits@10:54.74	Best:31.28
+2024-10-18 13:52:55,366 INFO    : Snapshot:0	Epoch:66	Loss:0.939	MRR:31.28	Hits@10:54.67	Best:31.28
+2024-10-18 13:53:02,981 INFO    : Snapshot:0	Epoch:67	Loss:0.9	MRR:31.26	Hits@10:54.74	Best:31.28
+2024-10-18 13:53:10,900 INFO    : Early Stopping! Snapshot:0 Epoch: 68 Best Results: 31.28
+2024-10-18 13:53:11,170 INFO    : => loading checkpoint './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-/0model_best.tar'
+2024-10-18 13:53:13,717 INFO    : 
++------------+--------+--------+--------+--------+---------+
+| Snapshot:0 |  MRR   | Hits@1 | Hits@3 | Hits@5 | Hits@10 |
++------------+--------+--------+--------+--------+---------+
+|     0      | 0.3128 | 0.1942 | 0.3613 | 0.4382 |  0.5474 |
++------------+--------+--------+--------+--------+---------+
+2024-10-18 13:53:17,678 INFO    : Model Parameter Configuration:
+2024-10-18 13:53:17,678 INFO    : Parameter ent_embeddings.weight: torch.Size([5817, 200]), require_grad = True
+2024-10-18 13:53:17,678 INFO    : Parameter rel_embeddings.weight: torch.Size([472, 200]), require_grad = True
+2024-10-18 13:53:56,123 INFO    : Snapshot:1	Epoch:0	Loss:0.562	
+2024-10-18 13:54:03,968 INFO    : Snapshot:1	Epoch:1	Loss:0.424	
+2024-10-18 13:54:11,066 INFO    : Snapshot:1	Epoch:2	Loss:0.331	
+2024-10-18 13:54:19,014 INFO    : Snapshot:1	Epoch:3	Loss:0.272	
+2024-10-18 13:54:26,174 INFO    : Snapshot:1	Epoch:4	Loss:0.24	
+2024-10-18 13:54:33,209 INFO    : Snapshot:1	Epoch:5	Loss:0.21	
+2024-10-18 13:54:40,273 INFO    : Snapshot:1	Epoch:6	Loss:0.19	
+2024-10-18 13:54:47,369 INFO    : Snapshot:1	Epoch:7	Loss:0.175	
+2024-10-18 13:54:54,844 INFO    : Snapshot:1	Epoch:8	Loss:0.163	
+2024-10-18 13:55:01,831 INFO    : Snapshot:1	Epoch:9	Loss:0.149	
+2024-10-18 13:55:08,888 INFO    : Snapshot:1	Epoch:10	Loss:0.144	
+2024-10-18 13:55:15,764 INFO    : Snapshot:1	Epoch:11	Loss:0.136	
+2024-10-18 13:55:22,695 INFO    : Snapshot:1	Epoch:12	Loss:0.129	
+2024-10-18 13:55:30,033 INFO    : Snapshot:1	Epoch:13	Loss:0.121	
+2024-10-18 13:55:36,875 INFO    : Snapshot:1	Epoch:14	Loss:0.117	
+2024-10-18 14:02:18,936 INFO    : 当前模型:Plan_yuan
+2024-10-18 14:02:18,958 INFO    : Model Parameter Configuration:
+2024-10-18 14:02:18,958 INFO    : Parameter ent_embeddings.weight: torch.Size([2909, 200]), require_grad = True
+2024-10-18 14:02:18,959 INFO    : Parameter rel_embeddings.weight: torch.Size([466, 200]), require_grad = True
+2024-10-18 14:02:20,045 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='True', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='True', Plan_weight='False', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:02:37,027 INFO    : Snapshot:0	Epoch:0	Loss:22.356	MRR:1.0	Hits@10:1.23	Best:1.0
+2024-10-18 14:02:45,184 INFO    : Snapshot:0	Epoch:1	Loss:21.771	MRR:1.19	Hits@10:1.74	Best:1.19
+2024-10-18 14:02:52,465 INFO    : Snapshot:0	Epoch:2	Loss:21.206	MRR:1.59	Hits@10:2.94	Best:1.59
+2024-10-18 14:03:00,327 INFO    : Snapshot:0	Epoch:3	Loss:20.691	MRR:2.28	Hits@10:4.69	Best:2.28
+2024-10-18 14:03:07,518 INFO    : Snapshot:0	Epoch:4	Loss:20.164	MRR:3.11	Hits@10:6.64	Best:3.11
+2024-10-18 14:03:14,931 INFO    : Snapshot:0	Epoch:5	Loss:19.654	MRR:3.92	Hits@10:8.35	Best:3.92
+2024-10-18 14:03:22,305 INFO    : Snapshot:0	Epoch:6	Loss:19.166	MRR:4.64	Hits@10:9.86	Best:4.64
+2024-10-18 14:03:29,447 INFO    : Snapshot:0	Epoch:7	Loss:18.656	MRR:5.32	Hits@10:11.62	Best:5.32
+2024-10-18 14:03:36,773 INFO    : Snapshot:0	Epoch:8	Loss:18.182	MRR:6.01	Hits@10:13.51	Best:6.01
+2024-10-18 14:03:44,344 INFO    : Snapshot:0	Epoch:9	Loss:17.687	MRR:6.74	Hits@10:15.38	Best:6.74
+2024-10-18 14:03:51,634 INFO    : Snapshot:0	Epoch:10	Loss:17.202	MRR:7.46	Hits@10:17.36	Best:7.46
+2024-10-18 14:03:59,144 INFO    : Snapshot:0	Epoch:11	Loss:16.726	MRR:8.23	Hits@10:19.48	Best:8.23
+2024-10-18 14:04:06,265 INFO    : Snapshot:0	Epoch:12	Loss:16.236	MRR:9.02	Hits@10:21.65	Best:9.02
+2024-10-18 14:04:13,518 INFO    : Snapshot:0	Epoch:13	Loss:15.755	MRR:9.8	Hits@10:24.1	Best:9.8
+2024-10-18 14:04:20,618 INFO    : Snapshot:0	Epoch:14	Loss:15.265	MRR:10.55	Hits@10:26.28	Best:10.55
+2024-10-18 14:04:28,029 INFO    : Snapshot:0	Epoch:15	Loss:14.751	MRR:11.26	Hits@10:28.51	Best:11.26
+2024-10-18 14:04:35,572 INFO    : Snapshot:0	Epoch:16	Loss:14.241	MRR:11.97	Hits@10:30.62	Best:11.97
+2024-10-18 14:04:43,181 INFO    : Snapshot:0	Epoch:17	Loss:13.71	MRR:12.61	Hits@10:32.42	Best:12.61
+2024-10-18 14:04:50,349 INFO    : Snapshot:0	Epoch:18	Loss:13.183	MRR:13.31	Hits@10:34.15	Best:13.31
+2024-10-18 14:04:57,642 INFO    : Snapshot:0	Epoch:19	Loss:12.641	MRR:14.03	Hits@10:35.84	Best:14.03
+2024-10-18 14:05:04,722 INFO    : Snapshot:0	Epoch:20	Loss:12.092	MRR:14.75	Hits@10:37.57	Best:14.75
+2024-10-18 14:05:12,011 INFO    : Snapshot:0	Epoch:21	Loss:11.52	MRR:15.62	Hits@10:39.25	Best:15.62
+2024-10-18 14:05:19,707 INFO    : Snapshot:0	Epoch:22	Loss:10.968	MRR:16.55	Hits@10:40.78	Best:16.55
+2024-10-18 14:05:26,864 INFO    : Snapshot:0	Epoch:23	Loss:10.398	MRR:17.54	Hits@10:42.22	Best:17.54
+2024-10-18 14:05:34,150 INFO    : Snapshot:0	Epoch:24	Loss:9.855	MRR:18.67	Hits@10:43.61	Best:18.67
+2024-10-18 14:05:41,330 INFO    : Snapshot:0	Epoch:25	Loss:9.33	MRR:19.84	Hits@10:44.99	Best:19.84
+2024-10-18 14:05:48,651 INFO    : Snapshot:0	Epoch:26	Loss:8.818	MRR:20.9	Hits@10:46.1	Best:20.9
+2024-10-18 14:05:55,815 INFO    : Snapshot:0	Epoch:27	Loss:8.334	MRR:21.91	Hits@10:47.19	Best:21.91
+2024-10-18 14:06:03,173 INFO    : Snapshot:0	Epoch:28	Loss:7.829	MRR:22.95	Hits@10:48.22	Best:22.95
+2024-10-18 14:06:10,841 INFO    : Snapshot:0	Epoch:29	Loss:7.335	MRR:23.92	Hits@10:49.25	Best:23.92
+2024-10-18 14:06:18,021 INFO    : Snapshot:0	Epoch:30	Loss:6.92	MRR:24.85	Hits@10:50.15	Best:24.85
+2024-10-18 14:06:25,326 INFO    : Snapshot:0	Epoch:31	Loss:6.474	MRR:25.74	Hits@10:50.83	Best:25.74
+2024-10-18 14:06:32,589 INFO    : Snapshot:0	Epoch:32	Loss:6.064	MRR:26.51	Hits@10:51.48	Best:26.51
+2024-10-18 14:06:39,944 INFO    : Snapshot:0	Epoch:33	Loss:5.65	MRR:27.25	Hits@10:52.17	Best:27.25
+2024-10-18 14:06:47,174 INFO    : Snapshot:0	Epoch:34	Loss:5.266	MRR:27.98	Hits@10:52.74	Best:27.98
+2024-10-18 14:06:54,266 INFO    : Snapshot:0	Epoch:35	Loss:4.919	MRR:28.51	Hits@10:53.33	Best:28.51
+2024-10-18 14:07:02,038 INFO    : Snapshot:0	Epoch:36	Loss:4.563	MRR:29.05	Hits@10:53.9	Best:29.05
+2024-10-18 14:07:09,282 INFO    : Snapshot:0	Epoch:37	Loss:4.255	MRR:29.6	Hits@10:54.28	Best:29.6
+2024-10-18 14:07:16,582 INFO    : Snapshot:0	Epoch:38	Loss:3.968	MRR:30.11	Hits@10:54.63	Best:30.11
+2024-10-18 14:07:23,821 INFO    : Snapshot:0	Epoch:39	Loss:3.674	MRR:30.54	Hits@10:55.03	Best:30.54
+2024-10-18 14:07:30,936 INFO    : Snapshot:0	Epoch:40	Loss:3.439	MRR:31.02	Hits@10:55.45	Best:31.02
+2024-10-18 14:07:38,161 INFO    : Snapshot:0	Epoch:41	Loss:3.221	MRR:31.44	Hits@10:55.67	Best:31.44
+2024-10-18 14:07:45,800 INFO    : Snapshot:0	Epoch:42	Loss:3.002	MRR:31.78	Hits@10:55.99	Best:31.78
+2024-10-18 14:07:53,581 INFO    : Snapshot:0	Epoch:43	Loss:2.821	MRR:32.11	Hits@10:56.29	Best:32.11
+2024-10-18 14:08:00,774 INFO    : Snapshot:0	Epoch:44	Loss:2.643	MRR:32.35	Hits@10:56.6	Best:32.35
+2024-10-18 14:08:08,831 INFO    : Snapshot:0	Epoch:45	Loss:2.481	MRR:32.59	Hits@10:56.77	Best:32.59
+2024-10-18 14:08:16,154 INFO    : Snapshot:0	Epoch:46	Loss:2.335	MRR:32.8	Hits@10:56.92	Best:32.8
+2024-10-18 14:08:23,368 INFO    : Snapshot:0	Epoch:47	Loss:2.197	MRR:33.1	Hits@10:57.0	Best:33.1
+2024-10-18 14:08:30,572 INFO    : Snapshot:0	Epoch:48	Loss:2.07	MRR:33.29	Hits@10:57.28	Best:33.29
+2024-10-18 14:08:38,152 INFO    : Snapshot:0	Epoch:49	Loss:1.952	MRR:33.43	Hits@10:57.39	Best:33.43
+2024-10-18 14:08:45,452 INFO    : Snapshot:0	Epoch:50	Loss:1.851	MRR:33.6	Hits@10:57.43	Best:33.6
+2024-10-18 14:08:52,705 INFO    : Snapshot:0	Epoch:51	Loss:1.747	MRR:33.71	Hits@10:57.68	Best:33.71
+2024-10-18 14:08:59,849 INFO    : Snapshot:0	Epoch:52	Loss:1.659	MRR:33.85	Hits@10:57.72	Best:33.85
+2024-10-18 14:09:07,047 INFO    : Snapshot:0	Epoch:53	Loss:1.577	MRR:33.92	Hits@10:57.65	Best:33.92
+2024-10-18 14:09:14,280 INFO    : Snapshot:0	Epoch:54	Loss:1.491	MRR:34.04	Hits@10:57.82	Best:34.04
+2024-10-18 14:09:22,690 INFO    : Snapshot:0	Epoch:55	Loss:1.433	MRR:34.11	Hits@10:57.83	Best:34.11
+2024-10-18 14:09:30,498 INFO    : Snapshot:0	Epoch:56	Loss:1.375	MRR:34.19	Hits@10:57.85	Best:34.19
+2024-10-18 14:09:37,749 INFO    : Snapshot:0	Epoch:57	Loss:1.307	MRR:34.23	Hits@10:57.81	Best:34.23
+2024-10-18 14:09:45,020 INFO    : Snapshot:0	Epoch:58	Loss:1.25	MRR:34.24	Hits@10:57.78	Best:34.24
+2024-10-18 14:09:52,151 INFO    : Snapshot:0	Epoch:59	Loss:1.199	MRR:34.31	Hits@10:57.78	Best:34.31
+2024-10-18 14:09:59,464 INFO    : Snapshot:0	Epoch:60	Loss:1.155	MRR:34.33	Hits@10:57.87	Best:34.33
+2024-10-18 14:10:06,759 INFO    : Snapshot:0	Epoch:61	Loss:1.12	MRR:34.4	Hits@10:57.85	Best:34.4
+2024-10-18 14:10:14,601 INFO    : Snapshot:0	Epoch:62	Loss:1.067	MRR:34.42	Hits@10:57.87	Best:34.42
+2024-10-18 14:10:21,871 INFO    : Snapshot:0	Epoch:63	Loss:1.031	MRR:34.5	Hits@10:57.91	Best:34.5
+2024-10-18 14:10:29,073 INFO    : Snapshot:0	Epoch:64	Loss:0.996	MRR:34.56	Hits@10:57.99	Best:34.56
+2024-10-18 14:10:36,412 INFO    : Snapshot:0	Epoch:65	Loss:0.97	MRR:34.59	Hits@10:57.81	Best:34.59
+2024-10-18 14:10:44,018 INFO    : Snapshot:0	Epoch:66	Loss:0.939	MRR:34.61	Hits@10:57.72	Best:34.61
+2024-10-18 14:10:51,199 INFO    : Snapshot:0	Epoch:67	Loss:0.9	MRR:34.62	Hits@10:57.84	Best:34.62
+2024-10-18 14:10:58,467 INFO    : Snapshot:0	Epoch:68	Loss:0.882	MRR:34.64	Hits@10:57.84	Best:34.64
+2024-10-18 14:11:06,007 INFO    : Snapshot:0	Epoch:69	Loss:0.843	MRR:34.65	Hits@10:57.86	Best:34.65
+2024-10-18 14:11:13,256 INFO    : Snapshot:0	Epoch:70	Loss:0.821	MRR:34.68	Hits@10:57.9	Best:34.68
+2024-10-18 14:11:20,499 INFO    : Snapshot:0	Epoch:71	Loss:0.804	MRR:34.74	Hits@10:57.77	Best:34.74
+2024-10-18 14:11:27,718 INFO    : Snapshot:0	Epoch:72	Loss:0.779	MRR:34.75	Hits@10:57.81	Best:34.75
+2024-10-18 14:11:35,250 INFO    : Snapshot:0	Epoch:73	Loss:0.764	MRR:34.78	Hits@10:57.84	Best:34.78
+2024-10-18 14:11:42,495 INFO    : Snapshot:0	Epoch:74	Loss:0.745	MRR:34.79	Hits@10:57.84	Best:34.79
+2024-10-18 14:11:50,208 INFO    : Snapshot:0	Epoch:75	Loss:0.72	MRR:34.83	Hits@10:57.88	Best:34.83
+2024-10-18 14:11:57,418 INFO    : Snapshot:0	Epoch:76	Loss:0.713	MRR:34.83	Hits@10:57.87	Best:34.83
+2024-10-18 14:12:04,679 INFO    : Snapshot:0	Epoch:77	Loss:0.688	MRR:34.78	Hits@10:57.82	Best:34.83
+2024-10-18 14:12:11,937 INFO    : Early Stopping! Snapshot:0 Epoch: 78 Best Results: 34.83
+2024-10-18 14:12:12,242 INFO    : => loading checkpoint './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-/0model_best.tar'
+2024-10-18 14:12:14,306 INFO    : 
++------------+--------+--------+--------+--------+---------+
+| Snapshot:0 |  MRR   | Hits@1 | Hits@3 | Hits@5 | Hits@10 |
++------------+--------+--------+--------+--------+---------+
+|     0      | 0.3491 | 0.2281 | 0.4047 | 0.4815 |  0.582  |
++------------+--------+--------+--------+--------+---------+
+2024-10-18 14:12:18,336 INFO    : Model Parameter Configuration:
+2024-10-18 14:12:18,336 INFO    : Parameter ent_embeddings.weight: torch.Size([5817, 200]), require_grad = True
+2024-10-18 14:12:18,336 INFO    : Parameter rel_embeddings.weight: torch.Size([472, 200]), require_grad = True
+2024-10-18 14:13:38,859 INFO    : 当前模型:Plan_yuan
+2024-10-18 14:13:38,883 INFO    : Model Parameter Configuration:
+2024-10-18 14:13:38,883 INFO    : Parameter ent_embeddings.weight: torch.Size([2909, 200]), require_grad = True
+2024-10-18 14:13:38,884 INFO    : Parameter rel_embeddings.weight: torch.Size([466, 200]), require_grad = True
+2024-10-18 14:13:39,952 INFO    : Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='True', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='True', Plan_yuan='True', Plan_weight='False', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+2024-10-18 14:13:39,953 INFO    : => loading checkpoint './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-/0model_best.tar'
+2024-10-18 14:13:39,958 INFO    : => loading checkpoint './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-/0model_best.tar'
+2024-10-18 14:13:42,642 INFO    : 
++------------+--------+--------+--------+--------+---------+
+| Snapshot:0 |  MRR   | Hits@1 | Hits@3 | Hits@5 | Hits@10 |
++------------+--------+--------+--------+--------+---------+
+|     0      | 0.3491 | 0.2281 | 0.4047 | 0.4815 |  0.582  |
++------------+--------+--------+--------+--------+---------+
+2024-10-18 14:13:46,602 INFO    : Model Parameter Configuration:
+2024-10-18 14:13:46,602 INFO    : Parameter ent_embeddings.weight: torch.Size([5817, 200]), require_grad = True
+2024-10-18 14:13:46,602 INFO    : Parameter rel_embeddings.weight: torch.Size([472, 200]), require_grad = True
+2024-10-18 14:14:24,428 INFO    : Snapshot:1	Epoch:0	Loss:0.429	
+2024-10-18 14:14:31,150 INFO    : Snapshot:1	Epoch:1	Loss:0.324	
+2024-10-18 14:14:38,936 INFO    : Snapshot:1	Epoch:2	Loss:0.258	
+2024-10-18 14:14:45,994 INFO    : Snapshot:1	Epoch:3	Loss:0.222	
+2024-10-18 14:14:53,678 INFO    : Snapshot:1	Epoch:4	Loss:0.198	
+2024-10-18 14:15:00,605 INFO    : Snapshot:1	Epoch:5	Loss:0.178	
+2024-10-18 14:15:07,968 INFO    : Snapshot:1	Epoch:6	Loss:0.167	
+2024-10-18 14:15:14,910 INFO    : Snapshot:1	Epoch:7	Loss:0.15	
+2024-10-18 14:15:21,942 INFO    : Snapshot:1	Epoch:8	Loss:0.141	
+2024-10-18 14:15:28,909 INFO    : Snapshot:1	Epoch:9	Loss:0.133	
+2024-10-18 14:15:36,049 INFO    : Snapshot:1	Epoch:10	Loss:0.127	
+2024-10-18 14:15:43,547 INFO    : Snapshot:1	Epoch:11	Loss:0.121	
+2024-10-18 14:15:50,664 INFO    : Snapshot:1	Epoch:12	Loss:0.114	
+2024-10-18 14:15:57,587 INFO    : Snapshot:1	Epoch:13	Loss:0.11	
+2024-10-18 14:16:04,550 INFO    : Snapshot:1	Epoch:14	Loss:0.108	
+2024-10-18 14:16:04,551 INFO    : Model Parameter Configuration:
+2024-10-18 14:16:04,551 INFO    : Parameter ent_embeddings.weight: torch.Size([5817, 200]), require_grad = True
+2024-10-18 14:16:04,551 INFO    : Parameter rel_embeddings.weight: torch.Size([472, 200]), require_grad = True
+2024-10-18 14:16:53,046 INFO    : Snapshot:1	Epoch:0	Loss:2.85	MRR:12.17	Hits@10:20.97	
+2024-10-18 14:17:03,668 INFO    : Snapshot:1	Epoch:1	Loss:1.893	MRR:16.05	Hits@10:28.08	
+2024-10-18 14:17:14,923 INFO    : Snapshot:1	Epoch:2	Loss:1.372	MRR:17.59	Hits@10:31.52	
+2024-10-18 14:17:25,565 INFO    : Snapshot:1	Epoch:3	Loss:1.047	MRR:18.68	Hits@10:33.92	
+2024-10-18 14:17:36,361 INFO    : Snapshot:1	Epoch:4	Loss:0.822	MRR:19.8	Hits@10:35.96	
+2024-10-18 14:17:47,312 INFO    : Snapshot:1	Epoch:5	Loss:0.69	MRR:20.75	Hits@10:37.55	
+2024-10-18 14:17:58,069 INFO    : Snapshot:1	Epoch:6	Loss:0.617	MRR:21.51	Hits@10:39.01	
+2024-10-18 14:18:08,821 INFO    : Snapshot:1	Epoch:7	Loss:0.532	MRR:22.07	Hits@10:40.06	
+2024-10-18 14:18:20,071 INFO    : Snapshot:1	Epoch:8	Loss:0.484	MRR:22.67	Hits@10:40.81	
+2024-10-18 14:18:30,879 INFO    : Snapshot:1	Epoch:9	Loss:0.45	MRR:23.11	Hits@10:41.41	
+2024-10-18 14:18:41,541 INFO    : Snapshot:1	Epoch:10	Loss:0.423	MRR:23.48	Hits@10:41.95	
+2024-10-18 14:18:53,690 INFO    : Snapshot:1	Epoch:11	Loss:0.388	MRR:23.76	Hits@10:42.31	
+2024-10-18 14:19:05,118 INFO    : Snapshot:1	Epoch:12	Loss:0.371	MRR:23.93	Hits@10:42.67	
+2024-10-18 14:19:17,316 INFO    : Snapshot:1	Epoch:13	Loss:0.341	MRR:24.22	Hits@10:42.94	
+2024-10-18 14:19:29,982 INFO    : Snapshot:1	Epoch:14	Loss:0.341	MRR:24.35	Hits@10:43.01	
+2024-10-18 14:19:42,650 INFO    : Snapshot:1	Epoch:15	Loss:0.32	MRR:24.41	Hits@10:43.12	
+2024-10-18 14:19:57,120 INFO    : Snapshot:1	Epoch:16	Loss:0.307	MRR:24.59	Hits@10:43.3	
+2024-10-18 14:20:11,596 INFO    : Snapshot:1	Epoch:17	Loss:0.297	MRR:24.69	Hits@10:43.48	
+2024-10-18 14:20:26,059 INFO    : Snapshot:1	Epoch:18	Loss:0.291	MRR:24.73	Hits@10:43.57	
+2024-10-18 14:20:41,105 INFO    : Snapshot:1	Epoch:19	Loss:0.277	MRR:24.75	Hits@10:43.65	
+2024-10-18 14:20:56,339 INFO    : Snapshot:1	Epoch:20	Loss:0.278	MRR:24.85	Hits@10:43.83	
+2024-10-18 14:21:10,999 INFO    : Snapshot:1	Epoch:21	Loss:0.262	MRR:24.87	Hits@10:43.72	
+2024-10-18 14:21:26,335 INFO    : Snapshot:1	Epoch:22	Loss:0.261	MRR:25.07	Hits@10:43.63	
+2024-10-18 14:21:41,084 INFO    : Snapshot:1	Epoch:23	Loss:0.255	MRR:25.08	Hits@10:43.81	
+2024-10-18 14:21:54,516 INFO    : Snapshot:1	Epoch:24	Loss:0.255	MRR:25.02	Hits@10:43.76	
+2024-10-18 14:22:07,534 INFO    : Snapshot:1	Epoch:25	Loss:0.245	MRR:25.03	Hits@10:43.85	
+2024-10-18 14:22:19,435 INFO    : Snapshot:1	Epoch:26	Loss:0.244	MRR:25.12	Hits@10:43.76	
+2024-10-18 14:22:31,701 INFO    : Snapshot:1	Epoch:27	Loss:0.24	MRR:25.13	Hits@10:43.78	
+2024-10-18 14:22:44,231 INFO    : Snapshot:1	Epoch:28	Loss:0.236	MRR:25.24	Hits@10:43.79	
+2024-10-18 14:22:56,072 INFO    : Snapshot:1	Epoch:29	Loss:0.231	MRR:25.27	Hits@10:43.88	
+2024-10-18 14:23:07,548 INFO    : Snapshot:1	Epoch:30	Loss:0.225	MRR:25.29	Hits@10:44.0	
+2024-10-18 14:23:20,090 INFO    : Snapshot:1	Epoch:31	Loss:0.225	MRR:25.19	Hits@10:44.08	
+2024-10-18 14:23:30,947 INFO    : Snapshot:1	Epoch:32	Loss:0.224	MRR:25.04	Hits@10:44.09	
+2024-10-18 14:23:42,445 INFO    : Early Stopping! Snapshot:1 Epoch: 33 Best Results: 25.29
+2024-10-18 14:23:42,446 INFO    : => loading checkpoint './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-/1model_best.tar'
+2024-10-18 14:23:43,210 INFO    : => loading checkpoint './checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_yuan-/1model_best.tar'
+2024-10-18 14:23:51,322 INFO    : 
++------------+--------+--------+--------+--------+---------+
+| Snapshot:1 |  MRR   | Hits@1 | Hits@3 | Hits@5 | Hits@10 |
++------------+--------+--------+--------+--------+---------+
+|     0      | 0.3309 | 0.2144 | 0.3779 | 0.4513 |  0.5571 |
+|     1      | 0.2506 | 0.1534 | 0.2833 | 0.3464 |  0.4393 |
++------------+--------+--------+--------+--------+---------+
+2024-10-18 14:23:57,597 INFO    : Model Parameter Configuration:
+2024-10-18 14:23:57,598 INFO    : Parameter ent_embeddings.weight: torch.Size([8725, 200]), require_grad = True
+2024-10-18 14:23:57,598 INFO    : Parameter rel_embeddings.weight: torch.Size([472, 200]), require_grad = True

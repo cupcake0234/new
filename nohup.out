@@ -1,0 +1,39 @@
+2024-10-18 13:52:59,434: 当前模型:Plan_weight
+2024-10-18 13:52:59,448: Model Parameter Configuration:
+2024-10-18 13:52:59,448: Parameter ent_embeddings: torch.Size([2909, 200]), require_grad = True
+2024-10-18 13:52:59,449: Parameter rel_embeddings: torch.Size([466, 200]), require_grad = True
+2024-10-18 13:52:59,449: Parameter linear_w: torch.Size([2909, 1]), require_grad = True
+/mnt/disk/qj24/anaconda3/envs/new/lib/python3.11/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+2024-10-18 13:52:59,924: Namespace(snapshot_num=5, dataset='ENTITY', gpu='0', loss_name='Margin', train_new=True, skip_previous='False', lifelong_name='LKGE', optimizer_name='Adam', embedding_model='TransE', epoch_num='100', margin=8.0, batch_size=2048, learning_rate=0.0001, emb_dim=200, l2=0.0, neg_ratio=10, patience=3, regular_weight=0.01, reconstruct_weight=0.1, using_regular_loss='True', using_reconstruct_loss='True', using_embedding_transfer='False', using_finetune='True', save_path='./checkpoint/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_transfer', data_path='./data/ENTITY/', log_path='./logs/20241018/ENTITY-TransE-PI_GNN-Margin-Plan_weight--WO_embedding_transfer', num_layer=1, num_workers=1, valid_metrics='mrr', valid=True, note='', seed=55, m_size=1024, PI_GNN='True', rectify_epochs=15, retrain_epochs=60, beta1=0.01, beta2=0.1, rectify_lr=0.0003, retrain_lr=0.0003, rectify_weight_decay=0, retrain_weight_decay=0, Pass_snapshot0='False', Plan_yuan='False', Plan_weight='True', logger=<RootLogger root (INFO)>, device=device(type='cuda', index=0))
+Start Training ===============================>
+Traceback (most recent call last):
+  File "/mnt/disk/qj24/LKGE_new/main.py", line 469, in <module>
+    E.continual_learning()
+  File "/mnt/disk/qj24/LKGE_new/main.py", line 358, in continual_learning
+    training_time = self.train()
+                    ^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/main.py", line 109, in train
+    loss, valid_res = trainer.run_epoch()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/src/train.py", line 20, in run_epoch
+    loss = self.train_processor.process_epoch(self.model, self.optimizer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/src/model/model_process.py", line 57, in process_epoch
+    batch_loss = model.loss(bh.to(self.args.device),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/src/model/LKGE.py", line 228, in loss
+    new_loss = self.new_loss(head, rel, tail, label)/head.size(0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/src/model/LKGE.py", line 124, in new_loss
+    return self.margin_loss(head, rel, tail, label).mean()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/src/model/BaseModel.py", line 283, in margin_loss
+    ent_embeddings, rel_embeddings = self.embedding('Train')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/LKGE_new/src/model/BaseModel.py", line 203, in embedding
+    ent_embeddings_out = self.ent_embeddings_list[0] * self.linear_w_list[0]
+                                                       ^^^^^^^^^^^^^^^^^^
+  File "/mnt/disk/qj24/anaconda3/envs/new/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1709, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'TransE' object has no attribute 'linear_w_list'

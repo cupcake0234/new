@@ -28,6 +28,8 @@ class BaseModel(nn.Module):
             self.rel_embeddings = nn.Parameter(Tensor(self.kg.snapshots[0].num_rel, self.args.emb_dim).to(self.args.device).double())
             # weight for every entity
             self.linear_w = nn.Parameter(Tensor(self.kg.snapshots[0].num_ent,1).to(self.args.device).double())
+            self.linear_w_list = nn.ParameterList()
+            self.linear_w_list.append(self.linear_w)
             self.expand_linear_w = None
 
         '''loss function'''
@@ -62,22 +64,21 @@ class BaseModel(nn.Module):
 
         # if self.expand_linear_w is not None:
         #     nn.init.xavier_uniform_(self.expand_linear_w)
+        if self.args.Plan_weight == "True":
+            if self.expand_ent_embeddings is not None:
+                nn.init.xavier_uniform_(self.expand_ent_embeddings)
 
-        if self.expand_ent_embeddings is not None:
-            nn.init.xavier_uniform_(self.expand_ent_embeddings)
-
-        if self.expand_linear_w is not None:
-
+            if self.expand_linear_w is not None:
             # 配合expand函数中weight方案的
             # if self.args.Plan_weight == 'True':
             #     return
-            nn.init.xavier_uniform_(self.expand_linear_w)
+                nn.init.xavier_uniform_(self.expand_linear_w)
 
     # 实体参数横向扩展使用的
     def expand(self):
-        self.expand_ent_embeddings = nn.Parameter(Tensor(self.kg.snapshots[self.args.snapshot].num_ent, self.args.emb_dim).to(self.args.device).double(), requires_grad=True)
-
+    
         if self.args.Plan_weight == 'True':
+            self.expand_ent_embeddings = nn.Parameter(Tensor(self.kg.snapshots[self.args.snapshot].num_ent, self.args.emb_dim).to(self.args.device).double(), requires_grad=True)
             logging.info('Plan_weight 产生新权重')
             # 尝试将扩展的权重初始化为 0 的方案
             # self.expand_linear_w = nn.Parameter(torch.zeros(self.kg.snapshots[self.args.snapshot].num_ent, 1).to(self.args.device).double(), requires_grad=True)
@@ -117,15 +118,14 @@ class BaseModel(nn.Module):
         return rel_embeddings.clone()
     
     def open_parameters(self):
-        for ent_embeddings in self.ent_embeddings_list:
-            ent_embeddings.requires_grad = True
-        
-        for linear_w in self.linear_w_list:
-            linear_w.requires_grad = True
-
-        # 对应isolate中锁住关系
         if self.args.Plan_weight == 'True':
-            self.rel_embeddings.requires_grad = True
+            for ent_embeddings in self.ent_embeddings_list:
+                ent_embeddings.requires_grad = True
+            
+            for linear_w in self.linear_w_list:
+                linear_w.requires_grad = True
+
+            # self.rel_embeddings.requires_grad = True
 
     def isolate_parameters(self):
         if self.args.Plan_weight == 'True':
@@ -139,13 +139,14 @@ class BaseModel(nn.Module):
             # isolate_rel_embeddings.requires_grad = False
 
     def combine(self):
-        if self.expand_ent_embeddings is not None:
-            self.ent_embeddings_list.append(self.expand_ent_embeddings)
-            self.expand_ent_embeddings = None
+        if self.args.Plan_weight == 'True':
+            if self.expand_ent_embeddings is not None:
+                self.ent_embeddings_list.append(self.expand_ent_embeddings)
+                self.expand_ent_embeddings = None
 
-        if self.expand_linear_w is not None:
-            self.linear_w_list.append(self.expand_linear_w)
-            self.expand_linear_w = None
+            if self.expand_linear_w is not None:
+                self.linear_w_list.append(self.expand_linear_w)
+                self.expand_linear_w = None
 
     def switch_snapshot(self):
         '''

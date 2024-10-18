@@ -11,11 +11,11 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["-dataset","ENTITY","-gpu","1","-lifelong_name","LKGE","-epoch_num","100","PI_GNN","True",
+            "args": ["-dataset","ENTITY","-gpu","0","-lifelong_name","LKGE","-epoch_num","100","-PI_GNN","True",
                     "-using_embedding_transfer","True",
-                    "-Pass_snapshot0","False",
+                    "-Pass_snapshot0","True",
                     "-Plan_yuan","False",
-                    "-Plan_weight","False",
+                    "-Plan_weight","True",
                     "-using_reconstruct_loss","True",
                     "-beta2","0.1"
                     ]

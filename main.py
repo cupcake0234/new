@@ -150,6 +150,7 @@ class experiment():
             '''logging'''
             if epoch % 1 == 0:
                 self.args.logger.info('Snapshot:{}\tEpoch:{}\tLoss:{}\t'.format(self.args.snapshot, epoch, round(loss, 3)))
+                
         end_time = time.time()
         rectify_training_time = end_time - start_time
         # 横向扩展
@@ -313,12 +314,15 @@ class experiment():
                     FWT.append(0)
                 else:
                     self.args.test_FWT = True
-                    res_before = self.test()
-                    FWT.append(res_before['mrr'])
+                    # res_before = self.test()
+                    # FWT.append(res_before['mrr'])
             self.args.test_FWT = False
 
             '''training'''
             if self.args.PI_GNN == "True":
+                if self.args.Plan_yuan == "True":
+                    print("plan_yuan方案，需要将PI_GN设置为False")
+                    return
                 if ss_id == 0:
                     self.args.rectify = False
                     self.args.retrain = False
@@ -388,7 +392,7 @@ class experiment():
         self.args.logger.info('Report Result:\n{}'.format(report_results))
         self.args.logger.info('Sum_Training_Time:{}'.format(sum(training_times)))
         self.args.logger.info('Every_Training_Time:{}'.format(training_times))
-        self.args.logger.info('Forward transfer: {}  Backward transfer: {}'.format(sum(FWT)/len(FWT), sum(BWT)/len(BWT)))
+        # self.args.logger.info('Forward transfer: {}  Backward transfer: {}'.format(sum(FWT)/len(FWT), sum(BWT)/len(BWT)))
 
     def get_report_result(self, results):
         '''
