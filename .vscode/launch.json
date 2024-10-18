@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "pythonPath": "/mnt/disk/qj24/anaconda3/envs/new/bin/python",
+            "name": "Python Debugger: main.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": ["-dataset","ENTITY","-gpu","1","-lifelong_name","LKGE","-epoch_num","100","PI_GNN","True",
+                    "-using_embedding_transfer","True",
+                    "-Pass_snapshot0","False",
+                    "-Plan_yuan","False",
+                    "-Plan_weight","False",
+                    "-using_reconstruct_loss","True",
+                    "-beta2","0.1"
+                    ]
+        }
+    ]
+}

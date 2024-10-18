@@ -52,23 +52,33 @@ class LKGE(BaseModel):
         Prepare for the training on next snapshot.
         '''
         '''store old parameters'''
-        self.store_old_parameters()
-        '''expand embedding size for new entities and relations'''
-        ent_embeddings, rel_embeddings = self.expand_embedding_size()
-        new_ent_embeddings = ent_embeddings.weight.data
-        new_rel_embeddings = rel_embeddings.weight.data
-        '''inherit learned paramters'''
-        new_ent_embeddings[:self.kg.snapshots[self.args.snapshot].num_ent] = torch.nn.Parameter(self.ent_embeddings.weight.data)
-        new_rel_embeddings[:self.kg.snapshots[self.args.snapshot].num_rel] = torch.nn.Parameter(self.rel_embeddings.weight.data)
-        self.ent_embeddings.weight = torch.nn.Parameter(new_ent_embeddings)
-        self.rel_embeddings.weight = torch.nn.Parameter(new_rel_embeddings)
-        '''embedding transfer'''
-        if self.args.using_embedding_transfer == 'True':
-            reconstruct_ent_embeddings, reconstruct_rel_embeddings = self.reconstruct()
-            new_ent_embeddings[self.kg.snapshots[self.args.snapshot].num_ent:] = reconstruct_ent_embeddings[self.kg.snapshots[self.args.snapshot].num_ent:]
-            new_rel_embeddings[self.kg.snapshots[self.args.snapshot].num_rel:] = reconstruct_rel_embeddings[self.kg.snapshots[self.args.snapshot].num_rel:]
+        if self.args.Plan_yuan == 'True':
+            self.store_old_parameters()
+            '''expand embedding size for new entities and relations'''
+            ent_embeddings, rel_embeddings = self.expand_embedding_size()
+            new_ent_embeddings = ent_embeddings.weight.data
+            new_rel_embeddings = rel_embeddings.weight.data
+            '''inherit learned paramters'''
+            new_ent_embeddings[:self.kg.snapshots[self.args.snapshot].num_ent] = torch.nn.Parameter(self.ent_embeddings.weight.data)
+            new_rel_embeddings[:self.kg.snapshots[self.args.snapshot].num_rel] = torch.nn.Parameter(self.rel_embeddings.weight.data)
             self.ent_embeddings.weight = torch.nn.Parameter(new_ent_embeddings)
             self.rel_embeddings.weight = torch.nn.Parameter(new_rel_embeddings)
+        elif self.args.Plan_weight == "True":
+            rel_embeddings_weight = self.expand_rel_embedding_size()
+            new_rel_embeddings = rel_embeddings_weight.data
+            new_rel_embeddings[:self.kg.snapshots[self.args.snapshot].num_rel] = torch.nn.Parameter(self.rel_embeddings.data)
+            self.rel_embeddings = torch.nn.Parameter(new_rel_embeddings)
+        '''embedding transfer'''
+        if self.args.using_embedding_transfer == 'True':
+            if self.args.Plan_yuan == "True":
+                reconstruct_ent_embeddings, reconstruct_rel_embeddings = self.reconstruct()
+                new_ent_embeddings[self.kg.snapshots[self.args.snapshot].num_ent:] = reconstruct_ent_embeddings[self.kg.snapshots[self.args.snapshot].num_ent:]
+                new_rel_embeddings[self.kg.snapshots[self.args.snapshot].num_rel:] = reconstruct_rel_embeddings[self.kg.snapshots[self.args.snapshot].num_rel:]
+                self.ent_embeddings.weight = torch.nn.Parameter(new_ent_embeddings)
+                self.rel_embeddings.weight = torch.nn.Parameter(new_rel_embeddings)
+            elif self.args.Plan_weight == "True":
+                logging.info('Plan_weight的transfer策略还没确定，目前Plan_weight还没有transfer')
+
         '''store the total number of facts containing each entity or relation'''
         new_ent_weight, new_rel_weight, new_other_weight = self.get_weight()
         self.register_buffer('new_weight_ent_embeddings_weight', new_ent_weight.clone().detach())
@@ -120,6 +130,25 @@ class LKGE(BaseModel):
         '''
         if self.args.snapshot == 0:
             return 0.0
+        elif self.args.PI_GNN == "True":
+            return 0.0
+            # 尝试对关系恢复使用正则化
+            # if self.args.Plan_weight == 'True':
+            #     losses = []
+            #     new_rel_weight = self.new_weight_rel_embeddings_weight
+            #     for name, param in self.named_parameters():
+            #         name = name.replace('.', '_')
+            #         if 'rel_embeddings' in name:
+            #             new_weight = new_rel_weight
+            #             new_data = param
+            #             old_weight = getattr(self, 'old_weight_{}'.format(name))
+            #             old_data = getattr(self, 'old_data_{}'.format(name))
+            #             # ??????不懂
+            #             if type(new_weight) != int:
+            #                 new_weight = new_weight[:old_weight.size(0)]
+            #                 new_data = new_data[:old_data.size(0)]
+            #             losses.append((((new_data - old_data) * old_weight / (new_weight+old_weight)) ** 2).sum())
+            #     return sum(losses)
         losses = []
         '''get samples number of entities and relations'''
         new_ent_weight, new_rel_weight, new_other_weight = self.new_weight_ent_embeddings_weight, self.new_weight_rel_embeddings_weight, self.new_weight_other_weight
@@ -152,11 +181,27 @@ class TransE(LKGE):
         Calculate the MAE loss by masking and reconstructing embeddings.
         :return: MAE loss
         '''
-        num_ent = self.kg.snapshots[self.args.snapshot].num_ent
-        num_rel = self.kg.snapshots[self.args.snapshot].num_rel
-        '''get subgraph(edge indexs and relation types of all facts in the training facts)'''
-        edge_index = self.kg.snapshots[self.args.snapshot].edge_index
-        edge_type = self.kg.snapshots[self.args.snapshot].edge_type
+        if self.args.rectify:
+            if self.args.Plan_weight == 'True':
+                num_ent = self.kg.snapshots[self.args.snapshot - 1].num_ent
+                num_rel = self.kg.snapshots[self.args.snapshot - 1].num_rel
+                '''get subgraph(edge indexs and relation types of all facts in the training facts)'''
+                # 就是新的三元组
+                edge_index = self.kg.snapshots[self.args.snapshot - 1].edge_index
+                edge_type = self.kg.snapshots[self.args.snapshot - 1].edge_type
+            else:
+                num_ent = self.kg.snapshots[self.args.snapshot].num_ent
+                num_rel = self.kg.snapshots[self.args.snapshot].num_rel
+                '''get subgraph(edge indexs and relation types of all facts in the training facts)'''
+                # 就是新的三元组
+                edge_index = self.kg.snapshots[self.args.snapshot].edge_index
+                edge_type = self.kg.snapshots[self.args.snapshot].edge_type
+        else:
+            num_ent = self.kg.snapshots[self.args.snapshot].num_ent
+            num_rel = self.kg.snapshots[self.args.snapshot].num_rel
+            '''get subgraph(edge indexs and relation types of all facts in the training facts)'''
+            edge_index = self.kg.snapshots[self.args.snapshot].edge_index
+            edge_type = self.kg.snapshots[self.args.snapshot].edge_type
 
         '''reconstruct'''
         ent_embeddings, rel_embeddings = self.embedding('Train')
